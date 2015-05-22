@@ -3,6 +3,7 @@ package io.vevox.icrc;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
+ * Core IslandClash RESTful CRUD plug-in.
  * @author Matthew Struble
  */
 public class ICRCPlugin extends JavaPlugin {
@@ -26,22 +27,38 @@ public class ICRCPlugin extends JavaPlugin {
         instance = null;
     }
 
-    public static ICRCPlugin getInstance(){
+    protected static ICRCPlugin getInstance(){
         return instance;
     }
 
+    /**
+     * Gets the protocol the REST server is running on, either 'http' or 'https'.
+     * @return The protocol.
+     */
     public static String getProtocol(){
         return protocol;
     }
 
+    /**
+     * Gets the host the REST server is running on.
+     * @return The host.
+     */
     public static String getHost(){
         return host;
     }
 
+    /**
+     * Gets the server base path this plug-in is to use for making REST requests.
+     * @return The base path.
+     */
     public static String getPath(){
         return path;
     }
 
+    /**
+     * Gets the port the REST server is running on.
+     * @return The port.
+     */
     public static int getPort(){
         return port;
     }

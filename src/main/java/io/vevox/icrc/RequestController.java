@@ -13,10 +13,11 @@ import static io.vevox.icrc.ICRCPlugin.*;
  * A basic controller for sending and receiving requests.
  * @author Matthew Struble
  */
+@SuppressWarnings("unused") // They're API methods! Rawr.
 public class RequestController {
 
     /**
-     * Constructs a string containing url data to server specified in this plugin's
+     * Constructs a string containing url data to server specified in this plug-in's
      * configuration, optionally using an ID.
      * @param id The ID to use, or <code>null</code> for no ID.
      * @return The string url.
@@ -40,7 +41,7 @@ public class RequestController {
             throw new IOException("ID is required for " + req.getRequestMethod() + "!");
         URL url = new URL(makeURL(id));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod(req.getRequestMethod().method());
+        connection.setRequestMethod(req.getRequestMethod().getHttpMethod());
         if (req.getRequestMethod().data()) {
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());

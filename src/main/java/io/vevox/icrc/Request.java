@@ -23,4 +23,10 @@ public interface Request extends Serializable {
      */
     JsonElement getRequestData();
 
+    /**
+     * Gets the route this request is to request to.
+     * @return The route.
+     */
+    String getRoute();
+
 }

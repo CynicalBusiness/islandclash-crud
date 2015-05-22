@@ -19,12 +19,13 @@ public class RequestController {
     /**
      * Constructs a string containing url data to server specified in this plug-in's
      * configuration, optionally using an ID.
+     * @param route The route name.
      * @param id The ID to use, or <code>null</code> for no ID.
      * @return The string url.
      */
-    public static String makeURL(String id){
+    public static String makeURL(String route, String id){
         return getProtocol() + "://" + getHost() + ":" + getPort() + getPath()
-                + (id != null ? "/" + id : "");
+                + "/" + route + (id != null ? "/" + id : "");
     }
 
     /**
@@ -39,7 +40,7 @@ public class RequestController {
     public static int makeRequest(Request req, String id, final RequestCallback callback) throws IOException {
         if (id == null && req.getRequestMethod().requireID())
             throw new IOException("ID is required for " + req.getRequestMethod() + "!");
-        URL url = new URL(makeURL(id));
+        URL url = new URL(makeURL(id, req.getRoute()));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod(req.getRequestMethod().getHttpMethod());
         if (req.getRequestMethod().data()) {

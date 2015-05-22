@@ -1,0 +1,7 @@
+name: Island Clash RESTful CRUD API
+main: io.vevox.icrc.ICRCPlugin
+version: 1.00.00
+
+author: 'Matthew Struble (CynicalBusiness)'
+description: Temporary core IslandClash CRUD API (Temporary installment, to be replaced)
+

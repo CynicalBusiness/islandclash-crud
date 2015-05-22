@@ -36,15 +36,15 @@ public class RequestController {
      * @throws NullPointerException If the request is <code>null</code>.
      */
     public static int makeRequest(Request req, String id, final RequestCallback callback) throws IOException {
-        if (id == null && req.getMethod().requireID())
-            throw new IOException("ID is required for " + req.getMethod() + "!");
+        if (id == null && req.getRequestMethod().requireID())
+            throw new IOException("ID is required for " + req.getRequestMethod() + "!");
         URL url = new URL(makeURL(id));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod(req.getMethod().method());
-        if (req.getMethod().data()) {
+        connection.setRequestMethod(req.getRequestMethod().method());
+        if (req.getRequestMethod().data()) {
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write(req.data().toString());
+            out.write(req.getRequestData().toString());
             out.close();
         }
         int code = connection.getResponseCode();
